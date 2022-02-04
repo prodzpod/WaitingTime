@@ -16,6 +16,7 @@ public class Pong extends Game {
     
     private double paddleAIX;
     private double paddleAIY;
+    private double paddleAISpeed = 9;
     
     private double paddleWidth;
     private double paddleHeight;
@@ -78,7 +79,7 @@ public class Pong extends Game {
             paddleY = canvasBottom - paddleHeight;
         }
         
-        double dir = Math.min(9, Math.abs(ballVelY));
+        double dir = Math.min(paddleAISpeed, Math.abs(ballVelY));
         if(paddleAIY + paddleHeight / 2 > ballY + ballSize / 2) {
             dir = -dir;
         } else if(paddleAIY + paddleHeight / 2 == ballY + ballSize / 2) {
@@ -123,6 +124,7 @@ public class Pong extends Game {
     public void handleCollision() {
         if(ballX < canvasLeft) {
             ballVelDefault = 3;
+            paddleAISpeed += 2;
             ballX = canvasLeft + width / 2;
             ballY = canvasTop + height / 2;
             ballVelX = ballVelDefault + Math.random();
@@ -130,6 +132,7 @@ public class Pong extends Game {
         }
         if(ballX + ballSize > canvasRight) {
             ballVelDefault = 3;
+            paddleAISpeed = Math.min(paddleAISpeed - 2, 3);
             ballX = canvasLeft + width / 2;
             ballY = canvasTop + height / 2;
             ballVelX = -ballVelDefault - Math.random();
