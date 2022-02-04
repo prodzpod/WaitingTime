@@ -132,7 +132,7 @@ public class Pong extends Game {
         }
         if(ballX + ballSize > canvasRight) {
             ballVelDefault = 3;
-            paddleAISpeed = Math.min(paddleAISpeed - 2, 3);
+            paddleAISpeed = Math.max(paddleAISpeed - 2, 3);
             ballX = canvasLeft + width / 2;
             ballY = canvasTop + height / 2;
             ballVelX = -ballVelDefault - Math.random();
