@@ -78,7 +78,7 @@ public class Pong extends Game {
             paddleY = canvasBottom - paddleHeight;
         }
         
-        double dir = Math.max(9, Math.abs(ballVelY));
+        double dir = Math.min(9, Math.abs(ballVelY));
         if(paddleAIY + paddleHeight / 2 > ballY + ballSize / 2) {
             dir = -dir
         } else if(paddleAIY + paddleHeight / 2 == ballY + ballSize / 2) {
